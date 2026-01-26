@@ -1,0 +1,15 @@
+{
+  "name": "nodejs-crash-course",
+  "version": "1.0.0",
+  "description": "a node js crash course from traversy media",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "deevanshik",
+  "license": "ISC"
+}
