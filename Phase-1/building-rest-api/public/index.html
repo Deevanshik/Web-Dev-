@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>User Management</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>User Management System</h1>
+
+    <!-- GET ALL USERS -->
+    <section>
+      <h2>Get All Users</h2>
+      <button id="getUsersBtn">Fetch Users</button>
+      <ul id="usersList"></ul>
+    </section>
+
+    <!-- CREATE USER -->
+    <section>
+      <h2>Create User</h2>
+      <input id="createName" placeholder="Name" />
+      <input id="createEmail" placeholder="Email" />
+      <input id="createPassword" placeholder="Password" />
+      <button id="createUserBtn">Create</button>
+    </section>
+
+    <!-- UPDATE USER -->
+    <section>
+      <h2>Update User</h2>
+      <input id="updateId" placeholder="User ID" />
+      <input id="updateName" placeholder="New Name" />
+      <input id="updateEmail" placeholder="New Email" />
+      <input id="updatePassword" placeholder="New Password" />
+      <button id="updateUserBtn">Update</button>
+    </section>
+
+    <!-- DELETE USER -->
+    <section>
+      <h2>Delete User</h2>
+      <input id="deleteId" placeholder="User ID" />
+      <button id="deleteUserBtn">Delete</button>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
