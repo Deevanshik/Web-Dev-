@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CRUD API Frontend</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>User Management</h1>
+
+  <!-- CREATE USER -->
+  <section>
+    <h2>Create User</h2>
+    <input id="c-username" placeholder="Username" />
+    <input id="c-password" type="password" placeholder="Password" />
+    <input id="c-hobbies" placeholder="Hobbies (comma separated)" />
+    <button onclick="createUser()">Create</button>
+  </section>
+
+  <!-- UPDATE USER -->
+  <section>
+    <h2>Update Hobbies</h2>
+    <input id="u-username" placeholder="Username" />
+    <input id="u-password" type="password" placeholder="Password" />
+    <input id="u-hobbies" placeholder="New hobbies (comma separated)" />
+    <button onclick="updateUser()">Update</button>
+  </section>
+
+  <!-- DELETE USER -->
+  <section>
+    <h2>Delete User</h2>
+    <input id="d-username" placeholder="Username" />
+    <input id="d-password" type="password" placeholder="Password" />
+    <button onclick="deleteUser()">Delete</button>
+  </section>
+
+  <!-- GET USERS -->
+  <section>
+    <h2>All Users</h2>
+    <button onclick="getUsers()">Fetch Users</button>
+    <div id="output"></div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
