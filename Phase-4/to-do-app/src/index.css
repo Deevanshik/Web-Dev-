@@ -1,0 +1,237 @@
+/* ===== Cute Girlish Light Theme ===== */
+
+/* Global reset + cute font */
+
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Caveat:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", "Caveat", system-ui, sans-serif;
+}
+
+/* Background */
+body {
+  background: linear-gradient(145deg, #fff0f5 0%, #ffe4f0 40%, #fce4ec 70%, #fff5f7 100%);
+  color: #6b3a5a;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Decorative floating blobs */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(70px);
+  opacity: 0.45;
+}
+
+body::before {
+  width: 320px;
+  height: 320px;
+  background: #ffb6d9;
+  top: -80px;
+  right: -60px;
+}
+
+body::after {
+  width: 260px;
+  height: 260px;
+  background: #f8a4c8;
+  bottom: -70px;
+  left: -50px;
+}
+
+/* Main card */
+.main {
+  max-width: 500px;
+  margin: 80px auto;
+  padding: 32px 28px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+  border-radius: 28px;
+  box-shadow:
+    0 8px 40px rgba(219, 112, 147, 0.18),
+    0 2px 10px rgba(219, 112, 147, 0.08);
+  border: 1.5px solid rgba(255, 182, 217, 0.45);
+  position: relative;
+  z-index: 1;
+}
+
+/* Little sparkle decoration on the card */
+.main::before {
+  content: "✦";
+  position: absolute;
+  top: -14px;
+  right: 32px;
+  font-size: 1.6rem;
+  color: #f48fb1;
+  text-shadow: 0 0 8px rgba(244, 143, 177, 0.5);
+  animation: sparkle 2.2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  50%       { opacity: 0.4; transform: scale(0.7) rotate(20deg); }
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, #ec407a, #f06292, #ab47bc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+}
+
+/* Input */
+.list-input {
+  width: 100%;
+  padding: 15px 18px;
+  border-radius: 18px;
+  border: 1.5px solid #f8bbd0;
+  outline: none;
+  background: #fff5f8;
+  color: #5d2a4a;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.list-input:focus {
+  border-color: #f48fb1;
+  box-shadow: 0 0 0 3px rgba(244, 143, 177, 0.25);
+}
+
+.list-input::placeholder {
+  color: #f48fb1;
+  font-weight: 400;
+}
+
+/* Buttons base */
+button {
+  border: none;
+  cursor: pointer;
+  border-radius: 16px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 12px 18px;
+  font-family: inherit;
+  transition: all 0.25s ease;
+}
+
+/* Add task button */
+.add-task-btn {
+  background: linear-gradient(135deg, #f48fb1, #ec407a);
+  color: #fff;
+  margin-top: 14px;
+  width: 100%;
+  box-shadow: 0 4px 16px rgba(236, 64, 122, 0.3);
+  letter-spacing: 0.4px;
+}
+
+.add-task-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(236, 64, 122, 0.42);
+}
+
+.add-task-btn:active {
+  transform: translateY(0px);
+}
+
+/* Clear tasks button */
+.clear-tasks-btn {
+  background: #fce4ec;
+  color: #c2185b;
+  margin-top: 10px;
+  width: 100%;
+  border: 1px solid #f8bbd0;
+}
+
+.clear-tasks-btn:hover {
+  background: #f8bbd0;
+  box-shadow: 0 3px 10px rgba(194, 24, 91, 0.15);
+}
+
+/* Todo list */
+.to-do-list {
+  list-style: none;
+  margin-top: 28px;
+}
+
+/* List item */
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  background: linear-gradient(145deg, #fff, #fff5f7);
+  border-radius: 20px;
+  box-shadow:
+    0 3px 12px rgba(219, 112, 147, 0.12),
+    0 1px 3px rgba(219, 112, 147, 0.06);
+  border: 1px solid rgba(248, 187, 208, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.list-item:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 20px rgba(219, 112, 147, 0.18),
+    0 2px 6px rgba(219, 112, 147, 0.1);
+}
+
+/* Task text */
+.task-content {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #5d2a4a;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+/* Delete button */
+.delete-task-btn {
+  background: #fce4ec;
+  color: #e91e63;
+  padding: 8px 13px;
+  font-size: 0.85rem;
+}
+
+.delete-task-btn:hover {
+  background: #f48fb1;
+  color: #fff;
+}
+
+/* Done / Undo button */
+.task-done-btn {
+  background: #f3e5f5;
+  color: #ab47bc;
+  padding: 8px 13px;
+  font-size: 0.85rem;
+}
+
+.task-done-btn:hover {
+  background: #ce93d8;
+  color: #fff;
+}
+
+/* Completed task */
+.task-content[style*="line-through"] {
+  opacity: 0.45;
+  color: #ad7a95;
+}
