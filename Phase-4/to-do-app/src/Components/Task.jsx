@@ -1,6 +1,22 @@
-const Task = ({task, handleDeleteTask, handleTaskDone}) => {
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
+const Task = ({ task, handleDeleteTask, handleTaskDone }) => {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: task.id });
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
   return (
-    <li className="list-item" key={task.id}>
+    <li
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      className="list-item"
+      key={task.id}
+    >
+      <button className="drag-btn" {...listeners}>⋮⋮</button>
       <span
         className="task-content"
         style={{ textDecoration: task.done ? "line-through" : "none" }}

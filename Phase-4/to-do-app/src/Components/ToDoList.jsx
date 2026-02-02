@@ -33,8 +33,27 @@ const ToDoList = () => {
     );
   }
 
+  const findTaskPos = (taskId) => {
+    return tasks.findIndex((task) => task.id === taskId);
+  };
+
   function handleClearTasks() {
     setTasks([]);
+  }
+
+  function handleDragEnd(event) {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+    setTasks((tasks) => {
+      const oldIndex = tasks.findIndex((t) => t.id === active.id);
+      const newIndex = tasks.findIndex((t) => t.id === over.id);
+
+      const updated = [...tasks];
+      const [movedTask] = updated.splice(oldIndex, 1);
+      updated.splice(newIndex, 0, movedTask);
+
+      return updated;
+    });
   }
 
   return (
@@ -59,7 +78,7 @@ const ToDoList = () => {
         Clear Tasks
       </button>
 
-      <DndContext collisionDetection={closestCorners}>
+      <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCorners}>
         <ListColumn
           tasks={tasks}
           handleDeleteTask={handleDeleteTask}
