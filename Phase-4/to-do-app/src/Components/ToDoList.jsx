@@ -1,11 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ListColumn from "./ListColumn.jsx";
-import { DndContext, closestCorners } from "@dnd-kit/core";
+import { DndContext, closestCorners, closestCenter } from "@dnd-kit/core";
+
+const STORAGE_KEY = "todo_v1";
 
 const ToDoList = () => {
-  const [tasks, setTasks] = useState([]);
-
+  const [tasks, setTasks] = useState(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : [];
+  });
   const [newTask, setNewTask] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+  }, [tasks]);
 
   function handleInputChange(event) {
     setNewTask(event.target.value);
@@ -39,6 +47,7 @@ const ToDoList = () => {
 
   function handleClearTasks() {
     setTasks([]);
+    localStorage.removeItem(STORAGE_KEY);
   }
 
   function handleDragEnd(event) {
@@ -78,7 +87,7 @@ const ToDoList = () => {
         Clear Tasks
       </button>
 
-      <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCorners}>
+      <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCenter}>
         <ListColumn
           tasks={tasks}
           handleDeleteTask={handleDeleteTask}
