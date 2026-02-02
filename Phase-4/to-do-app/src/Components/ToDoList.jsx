@@ -1,4 +1,7 @@
 import { useState } from "react";
+import ListColumn from "./ListColumn.jsx";
+import { DndContext, closestCorners } from "@dnd-kit/core";
+
 const ToDoList = () => {
   const [tasks, setTasks] = useState([]);
 
@@ -33,6 +36,7 @@ const ToDoList = () => {
   function handleClearTasks() {
     setTasks([]);
   }
+
   return (
     <div className="main">
       <h1>To-Do List</h1>
@@ -54,32 +58,14 @@ const ToDoList = () => {
       <button className="clear-tasks-btn" onClick={handleClearTasks}>
         Clear Tasks
       </button>
-      <ol className="to-do-list">
-        {tasks.map((task) => {
-          return (
-            <li className="list-item" key={task.id}>
-              <span
-                className="task-content"
-                style={{ textDecoration: task.done ? "line-through" : "none" }}
-              >
-                {task.text}
-              </span>
-              <button
-                className="delete-task-btn"
-                onClick={() => handleDeleteTask(task.id)}
-              >
-                delete
-              </button>
-              <button
-                className="task-done-btn"
-                onClick={() => handleTaskDone(task.id)}
-              >
-                {task.done ? "undo" : "done"}
-              </button>
-            </li>
-          );
-        })}
-      </ol>
+
+      <DndContext collisionDetection={closestCorners}>
+        <ListColumn
+          tasks={tasks}
+          handleDeleteTask={handleDeleteTask}
+          handleTaskDone={handleTaskDone}
+        />
+      </DndContext>
     </div>
   );
 };

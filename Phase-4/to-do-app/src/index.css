@@ -1,7 +1,3 @@
-/* ===== Cute Girlish Light Theme ===== */
-
-/* Global reset + cute font */
-
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Caveat:wght@400;700&display=swap");
 
 * {
@@ -11,16 +7,16 @@
   font-family: "Quicksand", "Caveat", system-ui, sans-serif;
 }
 
-/* Background */
+/* Dark funky background */
 body {
-  background: linear-gradient(145deg, #fff0f5 0%, #ffe4f0 40%, #fce4ec 70%, #fff5f7 100%);
-  color: #6b3a5a;
+  background: linear-gradient(145deg, #0a0e27 0%, #1a1035 40%, #2d1b4e 70%, #1e0d3d 100%);
+  color: #e0d4ff;
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
 }
 
-/* Decorative floating blobs */
+/* Animated floating orbs */
 body::before,
 body::after {
   content: "";
@@ -28,98 +24,133 @@ body::after {
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
-  filter: blur(70px);
-  opacity: 0.45;
+  filter: blur(80px);
+  animation: float 8s ease-in-out infinite;
 }
 
 body::before {
-  width: 320px;
-  height: 320px;
-  background: #ffb6d9;
-  top: -80px;
-  right: -60px;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, #6366f1, #8b5cf6);
+  top: -100px;
+  right: -80px;
+  opacity: 0.4;
 }
 
 body::after {
-  width: 260px;
-  height: 260px;
-  background: #f8a4c8;
-  bottom: -70px;
-  left: -50px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #ec4899, #a855f7);
+  bottom: -80px;
+  left: -60px;
+  opacity: 0.35;
+  animation-delay: -4s;
 }
 
-/* Main card */
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(30px, -30px) scale(1.1); }
+  66%      { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+/* Glassmorphic card with glow */
 .main {
   max-width: 500px;
   margin: 80px auto;
   padding: 32px 28px;
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(14px);
+  background: rgba(20, 15, 40, 0.75);
+  backdrop-filter: blur(20px) saturate(180%);
   border-radius: 28px;
   box-shadow:
-    0 8px 40px rgba(219, 112, 147, 0.18),
-    0 2px 10px rgba(219, 112, 147, 0.08);
-  border: 1.5px solid rgba(255, 182, 217, 0.45);
+    0 8px 50px rgba(139, 92, 246, 0.3),
+    0 0 100px rgba(236, 72, 153, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  border: 1.5px solid rgba(139, 92, 246, 0.3);
   position: relative;
   z-index: 1;
 }
 
-/* Little sparkle decoration on the card */
+/* Animated sparkle decoration */
 .main::before {
   content: "✦";
   position: absolute;
   top: -14px;
   right: 32px;
-  font-size: 1.6rem;
-  color: #f48fb1;
-  text-shadow: 0 0 8px rgba(244, 143, 177, 0.5);
-  animation: sparkle 2.2s ease-in-out infinite;
+  font-size: 1.8rem;
+  color: #a78bfa;
+  text-shadow: 
+    0 0 10px rgba(167, 139, 250, 0.8),
+    0 0 20px rgba(236, 72, 153, 0.4);
+  animation: sparkleRotate 3s ease-in-out infinite;
 }
 
-@keyframes sparkle {
-  0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
-  50%       { opacity: 0.4; transform: scale(0.7) rotate(20deg); }
+@keyframes sparkleRotate {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1) rotate(0deg); 
+    filter: hue-rotate(0deg);
+  }
+  50% { 
+    opacity: 0.5; 
+    transform: scale(1.3) rotate(180deg); 
+    filter: hue-rotate(90deg);
+  }
 }
 
-/* Heading */
+/* Neon gradient heading */
 h1 {
   text-align: center;
   margin-bottom: 24px;
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  background: linear-gradient(90deg, #ec407a, #f06292, #ab47bc);
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #a78bfa, #ec4899, #06b6d4, #8b5cf6);
+  background-size: 300% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: none;
+  animation: gradientShift 4s ease infinite;
+  text-shadow: 0 0 30px rgba(167, 139, 250, 0.5);
+  filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.4));
 }
 
-/* Input */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* Futuristic input */
 .list-input {
   width: 100%;
   padding: 15px 18px;
   border-radius: 18px;
-  border: 1.5px solid #f8bbd0;
+  border: 2px solid rgba(139, 92, 246, 0.4);
   outline: none;
-  background: #fff5f8;
-  color: #5d2a4a;
+  background: rgba(30, 20, 50, 0.6);
+  color: #e0d4ff;
   font-size: 1rem;
   font-weight: 600;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .list-input:focus {
-  border-color: #f48fb1;
-  box-shadow: 0 0 0 3px rgba(244, 143, 177, 0.25);
+  border-color: #a78bfa;
+  background: rgba(30, 20, 50, 0.8);
+  box-shadow: 
+    0 0 0 4px rgba(167, 139, 250, 0.2),
+    inset 0 2px 8px rgba(0, 0, 0, 0.3),
+    0 0 25px rgba(167, 139, 250, 0.4);
+  transform: translateY(-2px);
 }
 
 .list-input::placeholder {
-  color: #f48fb1;
+  color: #a78bfa;
   font-weight: 400;
+  opacity: 0.7;
 }
 
-/* Buttons base */
+/* Base button styles */
 button {
   border: none;
   cursor: pointer;
@@ -128,40 +159,83 @@ button {
   font-weight: 600;
   padding: 12px 18px;
   font-family: inherit;
-  transition: all 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Add task button */
+button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+button:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Animated gradient add button */
 .add-task-btn {
-  background: linear-gradient(135deg, #f48fb1, #ec407a);
+  background: linear-gradient(135deg, #8b5cf6, #ec4899, #06b6d4);
+  background-size: 200% 200%;
   color: #fff;
   margin-top: 14px;
   width: 100%;
-  box-shadow: 0 4px 16px rgba(236, 64, 122, 0.3);
-  letter-spacing: 0.4px;
+  box-shadow: 
+    0 4px 20px rgba(139, 92, 246, 0.4),
+    0 0 40px rgba(236, 72, 153, 0.2);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  font-size: 0.88rem;
+  animation: gradientMove 3s ease infinite;
+  border: 1px solid rgba(167, 139, 250, 0.5);
+}
+
+@keyframes gradientMove {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
 }
 
 .add-task-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 26px rgba(236, 64, 122, 0.42);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 8px 30px rgba(139, 92, 246, 0.6),
+    0 0 50px rgba(236, 72, 153, 0.4);
+  filter: brightness(1.2);
 }
 
 .add-task-btn:active {
-  transform: translateY(0px);
+  transform: translateY(-1px) scale(0.98);
 }
 
-/* Clear tasks button */
+/* Glowing clear button */
 .clear-tasks-btn {
-  background: #fce4ec;
-  color: #c2185b;
+  background: rgba(30, 20, 50, 0.6);
+  color: #ec4899;
   margin-top: 10px;
   width: 100%;
-  border: 1px solid #f8bbd0;
+  border: 2px solid rgba(236, 72, 153, 0.4);
+  text-transform: uppercase;
+  font-size: 0.88rem;
+  letter-spacing: 0.6px;
 }
 
 .clear-tasks-btn:hover {
-  background: #f8bbd0;
-  box-shadow: 0 3px 10px rgba(194, 24, 91, 0.15);
+  background: rgba(236, 72, 153, 0.2);
+  border-color: #ec4899;
+  box-shadow: 
+    0 0 20px rgba(236, 72, 153, 0.5),
+    inset 0 0 20px rgba(236, 72, 153, 0.1);
+  color: #fda4af;
+  transform: translateY(-2px);
 }
 
 /* Todo list */
@@ -170,7 +244,7 @@ button {
   margin-top: 28px;
 }
 
-/* List item */
+/* Futuristic list items */
 .list-item {
   display: flex;
   align-items: center;
@@ -178,60 +252,124 @@ button {
   gap: 12px;
   padding: 14px 16px;
   margin-bottom: 12px;
-  background: linear-gradient(145deg, #fff, #fff5f7);
+  background: linear-gradient(145deg, rgba(30, 20, 50, 0.6), rgba(40, 30, 60, 0.4));
   border-radius: 20px;
   box-shadow:
-    0 3px 12px rgba(219, 112, 147, 0.12),
-    0 1px 3px rgba(219, 112, 147, 0.06);
-  border: 1px solid rgba(248, 187, 208, 0.5);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    0 4px 15px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(167, 139, 250, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.list-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.list-item:hover::before {
+  left: 100%;
 }
 
 .list-item:hover {
-  transform: translateY(-2px);
+  transform: translateX(5px) translateY(-3px);
   box-shadow:
-    0 6px 20px rgba(219, 112, 147, 0.18),
-    0 2px 6px rgba(219, 112, 147, 0.1);
+    0 8px 25px rgba(139, 92, 246, 0.3),
+    0 0 30px rgba(236, 72, 153, 0.2),
+    inset 0 1px 1px rgba(167, 139, 250, 0.2);
+  border-color: #a78bfa;
 }
 
-/* Task text */
+/* Task text with glow */
 .task-content {
   flex: 1;
   font-size: 1rem;
   font-weight: 600;
-  color: #5d2a4a;
+  color: #e0d4ff;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px rgba(167, 139, 250, 0.3);
 }
 
-/* Delete button */
+.task-content:hover {
+  color: #fbbf24;
+  text-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
+}
+
+/* Pulsing delete button */
 .delete-task-btn {
-  background: #fce4ec;
-  color: #e91e63;
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
   padding: 8px 13px;
   font-size: 0.85rem;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  animation: pulseRed 2s ease-in-out infinite;
+}
+
+@keyframes pulseRed {
+  0%, 100% { box-shadow: 0 0 5px rgba(239, 68, 68, 0.3); }
+  50%      { box-shadow: 0 0 15px rgba(239, 68, 68, 0.6); }
 }
 
 .delete-task-btn:hover {
-  background: #f48fb1;
+  background: #ef4444;
   color: #fff;
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.8);
+  transform: scale(1.05) rotate(-2deg);
+  animation: none;
 }
 
-/* Done / Undo button */
+/* Glowing done button */
 .task-done-btn {
-  background: #f3e5f5;
-  color: #ab47bc;
+  background: rgba(34, 197, 94, 0.2);
+  color: #86efac;
   padding: 8px 13px;
   font-size: 0.85rem;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  animation: pulseGreen 2s ease-in-out infinite;
+}
+
+@keyframes pulseGreen {
+  0%, 100% { box-shadow: 0 0 5px rgba(34, 197, 94, 0.3); }
+  50%      { box-shadow: 0 0 15px rgba(34, 197, 94, 0.6); }
 }
 
 .task-done-btn:hover {
-  background: #ce93d8;
+  background: #22c55e;
   color: #fff;
+  box-shadow: 0 0 25px rgba(34, 197, 94, 0.8);
+  transform: scale(1.05) rotate(2deg);
+  animation: none;
 }
 
-/* Completed task */
+/* Completed task fade effect */
 .task-content[style*="line-through"] {
-  opacity: 0.45;
-  color: #ad7a95;
+  opacity: 0.35;
+  color: #6b7280;
+  text-shadow: none;
+  animation: fadeComplete 0.5s ease;
+}
+
+@keyframes fadeComplete {
+  from { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  to { 
+    opacity: 0.35; 
+    transform: scale(0.98);
+  }
+}
+
+/* Additional sparkle effects */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 1; }
 }
